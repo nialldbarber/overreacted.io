@@ -51,11 +51,10 @@
 		"dev": "gatsby develop",
 		"lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
 		"format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,json,css}}'",
-		"develop": "gatsby develop",
 		"start": "npm run develop",
 		"build": "rm -rf public && rm -rf .cache && gatsby build",
 		"now-build": "gatsby build",
-		"deploy": "yarn build && cp now.json public/ && cd public && now alias $(now) overreacted.io",
+		"develop": "gatsby develop",
 		"dry": "yarn build && cp now.json public/ && cd public && now"
 	},
 	"husky": {
@@ -64,9 +63,6 @@
 		}
 	},
 	"lint-staged": {
-		"{gatsby-*.js,src/**/*.{js,jsx,json,css}}": [
-			"yarn format",
-			"git add"
-		]
+		"{gatsby-*.js,src/**/*.{js,jsx,json,css}}": [ "yarn format", "git add" ]
 	}
 }

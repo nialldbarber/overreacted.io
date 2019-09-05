@@ -4,7 +4,7 @@ module.exports = {
     author: 'Niall Barber',
     description:
       'Personal blog by Niall Barber. I explain with words and code.',
-    siteUrl: 'https://overreacted.io',
+    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
     social: {
       twitter: '@nialldbarber',
     },
