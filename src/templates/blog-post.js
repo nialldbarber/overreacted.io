@@ -6,7 +6,6 @@ import '../fonts/fonts-post.css';
 import Bio from '../components/Bio';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import Signup from '../components/Signup';
 import Panel from '../components/Panel';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import { rhythm, scale } from '../utils/typography';
@@ -66,23 +65,6 @@ class Translations extends React.Component {
                 </React.Fragment>
               ))}
             </span>
-          )}
-          {lang !== 'en' && (
-            <>
-              <br />
-              <br />
-              {lang !== 'ru' && (
-                <>
-                  <Link to={languageLink('en')}>Read the original</Link>
-                  {' • '}
-                  <a href={editUrl} target="_blank" rel="noopener noreferrer">
-                    Improve this translation
-                  </a>
-                  {' • '}
-                </>
-              )}
-              <Link to={`/${lang}`}>View all translated posts</Link>{' '}
-            </>
           )}
         </Panel>
       </div>
@@ -183,14 +165,6 @@ class BlogPostTemplate extends React.Component {
           </article>
         </main>
         <aside>
-          <div
-            style={{
-              margin: '90px 0 40px 0',
-              fontFamily: systemFont,
-            }}
-          >
-            <Signup />
-          </div>
           <h3
             style={{
               fontFamily: 'Montserrat, sans-serif',

@@ -49,7 +49,7 @@ class Layout extends React.Component {
             fontFamily: 'Montserrat, sans-serif',
             marginTop: 0,
             marginBottom: 0,
-            height: 42, // because
+            height: 42,
             lineHeight: '2.625rem',
           }}
         >

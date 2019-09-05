@@ -1,11 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Overreacted',
-    author: 'Dan Abramov',
-    description: 'Personal blog by Dan Abramov. I explain with words and code.',
+    title: 'The Bleeding Edge',
+    author: 'Niall Barber',
+    description:
+      'Personal blog by Niall Barber. I explain with words and code.',
     siteUrl: 'https://overreacted.io',
     social: {
-      twitter: '@dan_abramov',
+      twitter: '@nialldbarber',
     },
   },
   pathPrefix: '/',
@@ -126,7 +127,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Dan Abramov's Overreacted Blog RSS Feed",
+            title: "Niall Barber's Overreacted Blog RSS Feed",
           },
         ],
       },
