@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'gatsby';
 import Toggle from './Toggle';
 import Helmet from 'react-helmet';
@@ -7,10 +7,14 @@ import { rhythm, scale } from '../utils/typography';
 import sun from '../assets/sun.png';
 import moon from '../assets/moon.png';
 
-class Layout extends React.Component {
-  state = {
-    theme: null,
-  };
+class Layout extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      theme: null,
+    };
+  }
   componentDidMount() {
     this.setState({ theme: window.__theme });
     window.__onThemeChange = () => {
@@ -57,7 +61,7 @@ class Layout extends React.Component {
             style={{
               boxShadow: 'none',
               textDecoration: 'none',
-              color: 'rgb(255, 167, 196)',
+              color: 'var(--pink)',
             }}
             to={'/'}
           >

@@ -1,5 +1,5 @@
 body {
-  --pink: rgb(255, 167, 196);
+  --pink: #ffa7c4;
   background-color: var(--bg);
 }
 
@@ -17,7 +17,7 @@ body.light {
 body.dark {
   -webkit-font-smoothing: antialiased;
 
-  --bg: #282c35;
+  --bg: rgb(30, 39, 45);
   --header: #ffffff;
   --textNormal: rgba(255, 255, 255, 0.88);
   --textTitle: #ffffff;

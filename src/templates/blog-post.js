@@ -6,127 +6,100 @@ import '../fonts/fonts-post.css';
 import Bio from '../components/Bio';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import Panel from '../components/Panel';
 import { formatPostDate, formatReadingTime } from '../utils/helpers';
 import { rhythm, scale } from '../utils/typography';
-import {
-  codeToLanguage,
-  createLanguageLink,
-  loadFontsForCode,
-} from '../utils/i18n';
 
-const systemFont = `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif`;
+const BlogPostTemplate = props => {
+  const post = props.data.markdownRemark;
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
+  let { previous, next } = props.pageContext;
+  const lang = post.fields.langKey;
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.markdownRemark;
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
-    let {
-      previous,
-      next,
-      slug,
-      translations,
-      translatedLinks,
-    } = this.props.pageContext;
-    const lang = post.fields.langKey;
+  let html = post.html;
 
-    // Replace original links with translated when available.
-    let html = post.html;
-
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          lang={lang}
-          title={post.frontmatter.title}
-          description={post.frontmatter.spoiler}
-          slug={post.fields.slug}
-        />
-        <main>
-          <article>
-            <header>
-              <h1 style={{ color: 'var(--textTitle)' }}>
-                {post.frontmatter.title}
-              </h1>
-              <p
-                style={{
-                  ...scale(-1 / 5),
-                  display: 'block',
-                  marginBottom: rhythm(1),
-                  marginTop: rhythm(-4 / 5),
-                }}
-              >
-                {formatPostDate(post.frontmatter.date, lang)}
-                {` • ${formatReadingTime(post.timeToRead)}`}
-              </p>
-              {translations.length > 0 && (
-                <Translations
-                  translations={translations}
-                  editUrl={editUrl}
-                  languageLink={languageLink}
-                  lang={lang}
-                />
-              )}
-            </header>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <footer />
-          </article>
-        </main>
-        <aside>
-          <h3
+  return (
+    <Layout location={props.location} title={siteTitle}>
+      <SEO
+        lang={lang}
+        title={post.frontmatter.title}
+        description={post.frontmatter.spoiler}
+        slug={post.fields.slug}
+      />
+      <main>
+        <article>
+          <header>
+            <h1 style={{ color: 'var(--textTitle)' }}>
+              {post.frontmatter.title}
+            </h1>
+            <p
+              style={{
+                ...scale(-1 / 5),
+                display: 'block',
+                marginBottom: rhythm(1),
+                marginTop: rhythm(-4 / 5),
+              }}
+            >
+              {formatPostDate(post.frontmatter.date, lang)}
+              {` • ${formatReadingTime(post.timeToRead)}`}
+            </p>
+          </header>
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <footer />
+        </article>
+      </main>
+      <aside>
+        <h3
+          style={{
+            fontFamily: 'Montserrat, sans-serif',
+            marginTop: rhythm(0.25),
+          }}
+        >
+          <Link
             style={{
-              fontFamily: 'Montserrat, sans-serif',
-              marginTop: rhythm(0.25),
+              boxShadow: 'none',
+              textDecoration: 'none',
+              color: 'var(--pink)',
+            }}
+            to={'/'}
+          >
+            The Bleeding Edge
+          </Link>
+        </h3>
+        <Bio />
+        <nav>
+          <ul
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+              listStyle: 'none',
+              padding: 0,
             }}
           >
-            <Link
-              style={{
-                boxShadow: 'none',
-                textDecoration: 'none',
-                color: 'var(--pink)',
-              }}
-              to={'/'}
-            >
-              Overreacted
-            </Link>
-          </h3>
-          <Bio />
-          <nav>
-            <ul
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-                listStyle: 'none',
-                padding: 0,
-              }}
-            >
-              <li>
-                {previous && (
-                  <Link
-                    to={previous.fields.slug}
-                    rel="prev"
-                    style={{ marginRight: 20 }}
-                  >
-                    ← {previous.frontmatter.title}
-                  </Link>
-                )}
-              </li>
-              <li>
-                {next && (
-                  <Link to={next.fields.slug} rel="next">
-                    {next.frontmatter.title} →
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </nav>
-        </aside>
-      </Layout>
-    );
-  }
-}
+            <li>
+              {previous && (
+                <Link
+                  to={previous.fields.slug}
+                  rel="prev"
+                  style={{ marginRight: 20 }}
+                >
+                  ← {previous.frontmatter.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </Layout>
+  );
+};
 
 export default BlogPostTemplate;
 
